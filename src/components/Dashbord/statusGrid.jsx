@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react'
 import React from 'react'
 
 export default function statusGrid() {
@@ -11,9 +12,17 @@ export default function statusGrid() {
   <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">
     iman
   </p>
-  <p className=""> 
+  <p className="text-3xl font-bold text-slate-800 dark:text-white mb-4"> 
      tsgi
   </p>
+  <div className="flex items-center space-x-2">
+<ArrowRight className="w-4 h-4"/>
+<span >
+  sattus change
+
+</span>
+<span className="text-sm text-slate-500 dark:text-slate-400">vs last</span>
+  </div>
 </div>
      </div>
       </div>
