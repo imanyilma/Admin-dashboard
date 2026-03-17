@@ -147,7 +147,7 @@ const adminStats = [
           {/* progress bar */}
           <div className="mt-4 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
             <div
-              className={`h-full bg-gradient-to-r ${stat.color} transition-all duration-300`}
+              className={`h-full bg-linear-to-r ${stat.color} transition-all duration-300`}
               style={{ width: stat.trend === "up" ? "75%" : "45%" }}
             ></div>
           </div>
