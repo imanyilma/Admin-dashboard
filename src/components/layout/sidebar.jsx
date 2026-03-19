@@ -38,11 +38,12 @@ const menuItems = [
     ]
   },
   {
-    id: "users",
+    id: "Students",
     icon: Users,
-    label: "Users",
+    label: "Students",
     count: "2.4M",
     submenu: [
+      { id: "overview",          label: "Overview" },
       { id: "all-users",          label: "All Users" },
       { id: "active-users",       label: "Active / Online" },
       { id: "verified",           label: "Verified Accounts" },  // ← Link to list of already verified users
