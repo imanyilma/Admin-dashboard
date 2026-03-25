@@ -24,19 +24,7 @@ const menuItems = [
    
     badge: "Live"
   },
-  // {
-  //   id: "analytics",
-  //   icon: BarChart3,
-  //   label: "Analytics",
-  //   submenu: [
-  //     { id: "ovekjrview",      label: "Overview" },
-  //     { id: "engagement",    label: "Engagement" },
-  //     { id: "audience",      label: "Audience Insights" },
-  //     { id: "content",       label: "Content Performance" },
-  //     { id: "growth",        label: "Growth & Trends" },
-  //     { id: "reports",       label: "Custom Reports" }
-  //   ]
-  // },
+
   {
     id: "Students",
     icon: Users,
@@ -59,14 +47,7 @@ const menuItems = [
     icon: CheckCircle,          // or "ShieldCheck", "BadgeCheck", "Award"
     label: "Verification",
     badge: "128",                 // e.g. pending verification requests
-    submenu: [
-      { id: "requests",           label: "Pending Requests" },     // Main queue: users waiting for review
-      { id: "approved",           label: "Approved / Verified" },
-      { id: "rejected",           label: "Rejected / Denied" },
-      { id: "search-by-id",       label: "Verify by User ID" },    // ← Direct search/verify tool by user ID
-      { id: "criteria",           label: "Verification Criteria" },// Platform rules, required docs, etc.
-      { id: "logs",               label: "Verification Logs" }     // History of actions (who approved/rejected when)
-    ]
+    
   },
   {
     id: "posts",
