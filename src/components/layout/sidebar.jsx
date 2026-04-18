@@ -14,6 +14,7 @@ import { Zap,
   DollarSign,
   Bell,
   Settings,
+  Menu,
   ChevronDown,
    ArrowLeftRight
  } from 'lucide-react';
@@ -103,7 +104,7 @@ const menuItems = [
     ]
   }
 ];
-function Sidebar() {
+function Sidebar({ collapsed = false, onToggleSidebar }) {
   const [expandedItem, setExpandedItem] = useState(new Set());
   const navigate = useNavigate();
   const location = useLocation();
@@ -130,23 +131,53 @@ function Sidebar() {
     navigate(getNavigationPath(itemId, path));
   };
 
+  const handleItemClick = (item) => {
+    if (collapsed && onToggleSidebar) {
+      onToggleSidebar();
+      if (item.submenu) {
+        toggleExpand(item.id);
+      }
+      return;
+    }
+
+    if (item.submenu) {
+      toggleExpand(item.id);
+    } else {
+      handleNavigation(item.id);
+    }
+  };
+
   return (
-   <div className="w-72 transition duration-300 ease-in-out bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl
-  border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10">
+   <div className={`${collapsed ? 'w-16' : 'w-72'} transition-all duration-300 ease-in-out 
+   bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10`}>
     {/* logo */}
     <div className="p-6 border-b border-slate-200/50 dark:border-slate-700/50 ">
-<div className="flex items-center space-x-3">
-  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
-  <ArrowLeftRight className="w-6 h-6 text-white rotate-45"/>
-</div>
-    <div>
-      <h1 className="text-lg font-bold text-slate-800 dark:text-white">
-        Uniconnect
-      </h1>
-      <p className="text-xs text-slate-600 dark:text-slate-400">
-        connect
-      </p>
+<div className="flex items-center justify-between">
+  <div className="flex items-center space-x-3">
+    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+      <ArrowLeftRight className="w-6 h-6 text-white rotate-45"/>
     </div>
+    {!collapsed && (
+      <div>
+        <h1 className="text-lg font-bold text-slate-800 dark:text-white">
+          Uniconnect
+        </h1>
+        <p className="text-xs text-slate-600 dark:text-slate-400">
+          connect
+        </p>
+      </div>
+    )}
+  </div>
+  {collapsed && onToggleSidebar && (
+    <button
+      type="button"
+      onClick={onToggleSidebar}
+      className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+      aria-label="Open sidebar"
+    >
+      <Menu className="w-5 h-5" />
+    </button>
+  )}
 </div>
     </div>
     {/* navigation */}
@@ -166,22 +197,23 @@ function Sidebar() {
     return (
       <div key={item.id}>
         <button
-          className={`w-full flex items-center justify-between p-2 rounded-xl transition-all duration-200 ${
+          className={`relative group w-full flex items-center justify-between p-2 rounded-xl transition-all duration-200 ${
             itemActive
               ? "bg-gradient-to-r from-slate-800 to-slate-600 text-white shadow-lg shadow-blue-500/25"
               : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50"
           }`}
-          onClick={() => {
-            if (item.submenu) {
-              toggleExpand(item.id);
-            } else {
-              handleNavigation(item.id);
-            }
-          }}
+          onClick={() => handleItemClick(item)}
         >
-          <div className="flex items-center space-x-3">
+          <div className={`flex items-center ${collapsed ? 'justify-center w-full' : 'space-x-3'}`}>
             {React.createElement(item.icon, { className: "w-5 h-5" })}
 
+            {collapsed && (
+              <span className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-slate-900 text-white text-xs px-2 py-1 shadow-lg opacity-0 transition duration-200 group-hover:opacity-100">
+                {item.label}
+              </span>
+            )}
+
+            {!collapsed && (
             <>
               <span className="font-medium ml-2">
                 {item.label}
@@ -199,9 +231,10 @@ function Sidebar() {
                 </span>
               )}
             </>
+            )}
           </div>
 
-          {item.submenu && (
+          {item.submenu && !collapsed && (
             <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
               expandedItem.has(item.id) ||
               (item.id === "verification" && location.pathname.startsWith("/dashboard/verification")) ||
@@ -217,7 +250,7 @@ function Sidebar() {
         </button>
 
         {/* submenu */}
-      {item.submenu &&
+      {item.submenu && !collapsed &&
         (expandedItem.has(item.id) ||
           (item.id === "verification" && location.pathname.startsWith("/dashboard/verification")) ||
           item.submenu.some(

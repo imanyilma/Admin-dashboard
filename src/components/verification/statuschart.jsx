@@ -9,7 +9,6 @@ DollarSign,
 Heart,
 
 } from 'lucide-react'
-
 import React from 'react'
 
 const adminStats = [
@@ -53,49 +52,11 @@ const adminStats = [
     bgColor: "bg-green-50 dark:bg-green-950/30",
     textColor: "text-green-700 dark:text-green-300"
   },
-  {
-    title: "Pending Reports / Moderation Queue",
-    value: "1,284",
-    change: "+28.6%",
-    trend: "up",  // ↑ might indicate rising issues → alert color if high
-    icon: AlertTriangle,
-    color: "from-amber-500 to-orange-600",
-    bgColor: "bg-amber-50 dark:bg-amber-950/30",
-    textColor: "text-amber-700 dark:text-amber-300"
-  },
-  {
-    title: "Active Sessions Now",
-    value: "42,819",
-    change: "+5.3%",
-    trend: "up",
-    icon: Zap,
-    color: "from-teal-500 to-cyan-600",
-    bgColor: "bg-teal-50 dark:bg-teal-950/30",
-    textColor: "text-teal-700 dark:text-teal-300"
-  },
-  {
-    title: "Total Revenue (This Month)",
-    value: "$348,920",
-    change: "+22.4%",
-    trend: "up",
-    icon: DollarSign,
-    color: "from-emerald-500 to-teal-600",
-    bgColor: "bg-emerald-50 dark:bg-emerald-950/30",
-    textColor: "text-emerald-700 dark:text-emerald-300"
-  },
-  {
-    title: "Avg. Engagement Rate",
-    value: "6.82%",
-    change: "-1.2%",
-    trend: "down",
-    icon: Heart,
-    color: "from-pink-500 to-rose-600",
-    bgColor: "bg-pink-50 dark:bg-pink-950/30",
-    textColor: "text-pink-700 dark:text-pink-300"
-  }
+  
+
 ];export default function StatusGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
      
       {adminStats.map((stat, index) => (
         <div

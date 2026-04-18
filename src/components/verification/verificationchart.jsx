@@ -9,6 +9,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 
+
 const data = [
   { month: "Jan", revenue: 45000, expenses: 32000 },
   { month: "Feb", revenue: 52000, expenses: 38000 },
@@ -24,22 +25,22 @@ const data = [
   { month: "Dec", revenue: 89000, expenses: 58000 }
 ];
 
-export default function RevenueChart() {
+export default function VerificationChart() {
   return (
     <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-b-2xl border border-slate-200/50 dark:border-slate-700/50 p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-white">Revenue Chart</h3>
-          <p className="text-sm text-slate-600">Track your revenue over time</p>
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white">Verification Chart</h3>
+          <p className="text-sm text-slate-600">Track your verification metrics over time</p>
         </div>
         <div className="flex space-x-4">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-            <span className="text-sm text-slate-600 dark:text-slate-400">Revenue</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Verified</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-            <span className="text-sm text-slate-600 dark:text-slate-400">Expenses</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Pending</span>
           </div>
         </div>
       </div>
